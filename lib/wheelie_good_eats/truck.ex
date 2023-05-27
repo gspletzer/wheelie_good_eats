@@ -50,12 +50,13 @@ defmodule WheelieGoodEats.Truck do
   Queries for all tracks and returns a randomly selected truck.
 
   In a future iteration if all trucks were in the database, would need to add a filter
-  to return only trucks with approved status. Additionally the approach may require to
-  optimize performance if the number of trucks in the database increased significantly.
+  to return only trucks with approved status. Additionally the approach may require a
+  refactor to optimize performance if the number of trucks in the database increased
+  significantly.
   """
-  @spec fetch_random_truck :: [Ecto.Schema.t()]
+  @spec fetch_random_truck :: Ecto.Schema.t()
   def fetch_random_truck() do
-    Repo.all(WheelieGoodEats.Truck)
+    fetch_all_trucks()
     |> Enum.random()
   end
 end

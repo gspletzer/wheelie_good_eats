@@ -2,8 +2,18 @@ defmodule WheelieGoodEats do
   @moduledoc """
   Top-level API for the Wheelie Good Eats application.
   """
-
+  alias WheelieGoodEats.Craving
   alias WheelieGoodEats.Truck
+
+  @type craving :: Craving.changeset()
+
+  @doc """
+  Generate a new craving changeset for the client input form.
+  """
+  @spec new_craving :: craving()
+  def new_craving() do
+    Craving.new() |> Craving.changeset()
+  end
 
   @doc """
   Fetches all food trucks for the client.
@@ -25,7 +35,7 @@ defmodule WheelieGoodEats do
   @doc """
   Fetches a random food truck for the client.
   """
-  @spec show_random :: [Truck.t()]
+  @spec show_random :: Truck.t()
   def show_random() do
     Truck.fetch_random_truck()
   end
