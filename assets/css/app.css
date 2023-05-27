@@ -3,3 +3,19 @@
 @import "tailwindcss/utilities";
 
 /* This file is for your main application CSS */
+body {
+  background-color: #065f46;
+}
+
+.main {
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center; 
+}
+
+.options {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}

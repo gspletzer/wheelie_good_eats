@@ -1,0 +1,21 @@
+<div class="main">
+  <header class="flex-direction column text-center">
+    <h1 class="text-6xl font-bold leading-normal mt-3 mb-0 text-emerald-50">Wheelie Good Eats</h1>
+    <h3 class="italic text-2xl font-normal leading-normal mt-0 mb-0 text-emerald-50">Enjoy dining at:</h3>
+  </header>
+  <div class="grid w-screen place-items-center">
+    <div class="bg-emerald-50 flex flex-col items-center text-center border rounded-md space-y-2 mt-10 mb-10 ml-10 mr-10 px-10 py-10">
+      <p class="text-xl font-bold text-emerald-950"><%= @trucks.applicant %></p>
+      <p class="text-emerald-950"><%= @trucks.address %></p>
+      <p class="text-emerald-950"> Menu includes: <%= @trucks.food_items %> </p>
+    </div>
+  </div>
+  <div class="options">
+    <.button style="background-color: #ecfccb;color: black;" phx-click="new">
+      ROLL AGAIN
+    </.button>
+    <.button style="background-color: #ecfccb;color: black;" phx-click="all">
+      BACK TO ALL TRUCKS
+     </.button>
+  </div>
+</div>
