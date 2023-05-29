@@ -14,7 +14,7 @@ defmodule WheelieGoodEats.Craving do
   end
 
   @doc """
-  Adds value provided by params to the designated key.any()
+  Adds value provided by params to the designated key.
 
   This is necessary for working with the form on the frontend.
   It is designed to be reusable in the event a need for an updated
