@@ -19,8 +19,8 @@ Once you are live (no pun intended) in the browser, you will see a scrollable li
 On the root (`/`) view you will note 3 buttons:
 
 - `PICK FOR ME`: Selects a random truck from the list for you to dine at. It renders your result at `/winner`.
-- `NARROW IT DOWN`: Allows user to type an input into the text box (located above the button) and perform a query of the food trucks that match the food item entered. If not items match, you will get a message that says `Uh-oh, no matches. Craving something else?` at which point, you can enter a new input, or click either of the other buttons.
-- `SHOW ALL`: Allows the use to quickly return to a display of all food tracks.
+- `NARROW IT DOWN`: Allows user to type an input into the text box (located above the button) and perform a query of the food trucks that match the food item entered. If no items match, you will get a message that says `Uh-oh, no matches. Craving something else?` at which point, you can enter a new input, or click either of the other buttons.
+- `SHOW ALL`: Allows the user to quickly return to a display of all food tracks.
 
 On the `/winner` view you will see 2 buttons:
 
