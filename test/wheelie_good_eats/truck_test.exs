@@ -8,17 +8,25 @@ defmodule WheelieGoodEats.TruckTest do
   setup do
     :ok = Ecto.Adapters.SQL.Sandbox.checkout(WheelieGoodEats.Repo)
 
-    [
-      truck_1: insert!(:truck),
-      truck_2: insert!(:truck),
-      truck_3: insert!(:truck, food_items: "tacos")
-    ]
+    %{
+      trucks: [
+        insert!(:truck),
+        insert!(:truck),
+        insert!(:truck, food_items: "tacos")
+      ]
+    }
   end
 
   describe "fetch_all_trucks/0" do
-    test "should return all trucks in database" do
+    test "should return all trucks in database", %{trucks: trucks} do
       result = Truck.fetch_all_trucks()
       assert 3 == length(result)
+
+      assert Enum.sort(result) == Enum.sort(trucks)
+
+      for truck <- trucks do
+        assert truck in result
+      end
     end
   end
 
