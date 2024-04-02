@@ -18,6 +18,5 @@ defmodule WheelieGoodEatsWeb.Router do
     pipe_through(:browser)
 
     live("/", TrucksLive)
-    live("/winner", WinnerLive)
   end
 end
