@@ -51,7 +51,8 @@ defmodule WheelieGoodEats.MixProject do
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
       {:faker, "~> 0.17", only: :test},
-      {:mix_test_interactive, "~> 1.0", only: :dev, runtime: false}
+      {:mix_test_interactive, "~> 1.0", only: :dev, runtime: false},
+      {:ex_heroicons, "~> 2.0.0"}
     ]
   end
 
