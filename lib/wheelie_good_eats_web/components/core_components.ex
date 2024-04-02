@@ -113,7 +113,7 @@ defmodule WheelieGoodEatsWeb.CoreComponents do
       phx-click={JS.push("lv:clear-flash", value: %{key: @kind}) |> hide("##{@id}")}
       role="alert"
       class={[
-        "fixed top-2 right-2 w-80 sm:w-96 z-50 rounded-lg p-3 ring-1",
+        "fixed top-2 right-2 w-80 sm:w-96 z-50 rounded-lg p-1 ring-1",
         @kind == :info && "bg-emerald-50 text-emerald-800 ring-emerald-500 fill-cyan-900",
         @kind == :error && "bg-rose-50 text-rose-900 shadow-md ring-rose-500 fill-rose-900"
       ]}
@@ -185,7 +185,7 @@ defmodule WheelieGoodEatsWeb.CoreComponents do
   def simple_form(assigns) do
     ~H"""
     <.form :let={f} for={@for} as={@as} {@rest}>
-      <div class="bg-emerald-800 mt-10 space-y-2 flex flex-col items-center ml-5 mr-5">
+      <div class="bg-emerald-800 flex items-center ml-2 mr-2">
         <%= render_slot(@inner_block, f) %>
         <div :for={action <- @actions} class="mt-2 flex items-center justify-between gap-6">
           <%= render_slot(action, f) %>
@@ -214,7 +214,7 @@ defmodule WheelieGoodEatsWeb.CoreComponents do
     <button
       type={@type}
       class={[
-        "phx-submit-loading:opacity-75 rounded-lg bg-zinc-900 hover:bg-zinc-700 py-2 px-3 ml-5 mr-5",
+        "phx-submit-loading:opacity-75 rounded-lg bg-zinc-700 hover:bg-zinc-900 py-2 px-3 ml-1 mr-1",
         "text-sm font-semibold leading-6 text-white active:text-white/80",
         @class
       ]}
