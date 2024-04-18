@@ -24,19 +24,21 @@ defmodule WheelieGoodEats do
   end
 
   @doc """
-  Fetches all food trucks that match query filter
-  provided by client.
+  Filters for a list of food trucks that match food_type filter
+  provided by client from the list of approved trucks already mounted
+  on socket.
   """
-  @spec show_query(String.t()) :: [Truck.t()]
-  def show_query(filter) do
-    Truck.fetch_query_trucks(filter)
+  @spec show_query(List.t(), String.t()) :: [Truck.t()]
+  def show_query(trucks, filter) do
+    Enum.filter(trucks, fn truck -> String.contains?(truck.food_items, filter) end)
   end
 
   @doc """
-  Fetches a random food truck for the client.
+  Selects a random food truck for the client from the list of approved
+  trucks already mounted on socket.
   """
-  @spec show_random :: Truck.t()
-  def show_random() do
-    Truck.fetch_random_truck()
+  @spec show_random(List.t()) :: Truck.t()
+  def show_random(trucks) do
+    Enum.random(trucks)
   end
 end

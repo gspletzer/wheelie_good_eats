@@ -30,34 +30,32 @@
     </.button>
   </header>
   <%= cond do %>
-    <% is_binary(@selected) -> %>
-      <%= if length(@trucks) != 0 do %>
-        <div class="truck grid grid-cols-4 gap-4 mt-4 mx-4">
-          <%= for truck <- @trucks do %>
-            <div class="bg-emerald-50 flex flex-col items-center text-center py-2 px-2 border rounded-md space-y-2">
-              <p class="text-xl font-bold text-emerald-950"><%= truck.applicant %></p>
-              <p class="text-emerald-950"><%= truck.address %></p>
-              <p class="italic text-emerald-950">Menu includes: <%= truck.food_items %></p>
-            </div>
-          <% end %>
-        </div>
-      <% else %>
-        <div>
-          <h1 class="text-center text-5xl font-bold leading-normal mt-3 mb-0 text-emerald-50">
-            Uh-oh, no matches. Craving something else?
-          </h1>
-        </div>
-      <% end %>
-    <% is_struct(@selected) -> %>
+    <% @random_truck != nil -> %>
       <div class="grid w-screen place-items-center">
         <h4 class="italic text-2xl font-normal leading-normal mt-5 mb-0 text-emerald-50">
           Enjoy dining at:
         </h4>
         <div class="bg-emerald-50 flex flex-col items-center text-center border rounded-md space-y-2 mt-3 mb-10 ml-10 mr-10 px-10 py-10">
-          <p class="text-xl font-bold text-emerald-950"><%= @selected.applicant %></p>
-          <p class="text-emerald-950"><%= @selected.address %></p>
-          <p class="text-emerald-950">Menu includes: <%= @selected.food_items %></p>
+          <p class="text-xl font-bold text-emerald-950"><%= @random_truck.applicant %></p>
+          <p class="text-emerald-950"><%= @random_truck.address %></p>
+          <p class="text-emerald-950">Menu includes: <%= @random_truck.food_items %></p>
         </div>
+      </div>
+    <% @filtered_trucks != nil && length(@filtered_trucks) == 0 -> %>
+      <div>
+        <h1 class="text-center text-5xl font-bold leading-normal mt-3 mb-0 text-emerald-50">
+          Uh-oh, no matches. Craving something else?
+        </h1>
+      </div>
+    <% true -> %>
+      <div class="truck grid grid-cols-4 gap-4 mt-4 mx-4">
+        <%= for truck <- if @filtered_trucks != nil, do: @filtered_trucks, else: @trucks do %>
+          <div class="bg-emerald-50 flex flex-col items-center text-center py-2 px-2 border rounded-md space-y-2">
+            <p class="text-xl font-bold text-emerald-950"><%= truck.applicant %></p>
+            <p class="text-emerald-950"><%= truck.address %></p>
+            <p class="italic text-emerald-950">Menu includes: <%= truck.food_items %></p>
+          </div>
+        <% end %>
       </div>
   <% end %>
 </div>

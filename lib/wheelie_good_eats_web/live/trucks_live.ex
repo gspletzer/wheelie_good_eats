@@ -5,44 +5,43 @@ defmodule WheelieGoodEatsWeb.TrucksLive do
   def mount(_params, _session, socket) do
     trucks = WheelieGoodEats.show_all()
     craving = WheelieGoodEats.new_craving()
-    selected_truck = ""
 
     {:ok,
      assign(socket, :trucks, trucks)
      |> assign(:form, to_form(craving))
-     |> assign(:selected, selected_truck)}
+     |> assign(:filtered_trucks, nil)
+     |> assign(:random_truck, nil)}
   end
 
   def handle_event("query", %{"craving" => craving}, socket) do
-    if craving["food_type"] != "" do
-      reset_selected = ""
-      query_trucks = WheelieGoodEats.show_query(craving["food_type"])
+    if craving["food_type"] != nil do
+      query_trucks = WheelieGoodEats.show_query(socket.assigns.trucks, craving["food_type"])
       reset_craving = WheelieGoodEats.new_craving()
 
       {:noreply,
-       assign(socket, :trucks, query_trucks)
+       assign(socket, :filtered_trucks, query_trucks)
        |> assign(:form, to_form(reset_craving))
-       |> assign(:selected, reset_selected)}
+       |> assign(:random_truck, nil)}
     else
       {:noreply, put_flash(socket, :error, "Cannot be empty.")}
     end
   end
 
   def handle_event("random", _unsigned_params, socket) do
-    selected_truck = WheelieGoodEats.show_random()
+    trucks = socket.assigns.trucks
+    selected_truck = WheelieGoodEats.show_random(trucks)
 
-    {:noreply, assign(socket, :selected, selected_truck)}
-    # {:noreply, socket |> redirect(to: "/winner")}
+    {:noreply,
+     assign(socket, :random_truck, selected_truck)
+     |> assign(:filtered_trucks, nil)}
   end
 
   def handle_event("refresh", _unsigned_params, socket) do
-    all_trucks = WheelieGoodEats.show_all()
     reset_craving = WheelieGoodEats.new_craving()
-    reset_selected = ""
 
     {:noreply,
-     assign(socket, :trucks, all_trucks)
-     |> assign(:form, to_form(reset_craving))
-     |> assign(:selected, reset_selected)}
+     assign(socket, :form, to_form(reset_craving))
+     |> assign(:filtered_trucks, nil)
+     |> assign(:random_truck, nil)}
   end
 end
