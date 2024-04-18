@@ -30,25 +30,6 @@ defmodule WheelieGoodEatsWeb do
     end
   end
 
-  def channel do
-    quote do
-      use Phoenix.Channel
-    end
-  end
-
-  def controller do
-    quote do
-      use Phoenix.Controller,
-        formats: [:html, :json],
-        layouts: [html: WheelieGoodEatsWeb.Layouts]
-
-      import Plug.Conn
-      import WheelieGoodEatsWeb.Gettext
-
-      unquote(verified_routes())
-    end
-  end
-
   def live_view do
     quote do
       use Phoenix.LiveView,

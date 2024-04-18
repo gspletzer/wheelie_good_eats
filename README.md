@@ -19,8 +19,8 @@ Once you are live (no pun intended) in the browser, you will see a scrollable li
 On the root (`/`) view you will note 2 buttons and a search box:
 
 - `PICK FOR ME`: Selects a random truck from the list for you to dine at. It renders your result in the primary card display area.
-- `SEARCH BOX`: Allows user to type an input into the text box and perform a query of the food trucks that match the string entered (ideally an actual food item). If no items match, you will get a message that says `Uh-oh, no matches. Craving something else?` at which point, you can enter a new input, or click either of the other buttons. If you click the search icon without entering at least one character in the search box, you will received a pop-up error message informing you that you need to enter something in the input box in order to execute the search function.
 - `REFRESH`: Allows the user to quickly return to a display of all food tracks.
+- `SEARCH BOX`: Allows user to type an input into the text box and perform a query of the food trucks that match the string entered (ideally an actual food item). If no items match, you will get a message that says `Uh-oh, no matches. Craving something else?` at which point, you can enter a new input, or click either of the other buttons. If you click the search icon without entering at least one character in the search box, you will received a pop-up error message informing you that you need to enter something in the input box in order to execute the search function.
 
 ## **Testing**
 
@@ -28,15 +28,3 @@ A few initial tests have been added. To run the tests execute:
 
 - `mix test` to run all tests once and stop.
 - `mix test.interactive` to run all tests and remain active, watching for additional changes. This option will also allow you to isolate where it is watching for changes, or which files you wish to run tests against. Once it is running, you can simply type `?` in the terminal to see the different options.
-
-## **Next Steps**
-
-Next steps would be:
-
-- Add filtering of results on change in search box, rather than just submit.
-
-- Add ability to be a registered user and favorite trucks/save queries.
-
-- Add more tests, including an end-to-end.
-
-- Add error handling in the event the server crashes or a query fails.

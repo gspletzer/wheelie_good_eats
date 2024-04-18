@@ -9,13 +9,13 @@ defmodule WheelieGoodEats.Application do
   def start(_type, _args) do
     children = [
       # Start the Telemetry supervisor
-      WheelieGoodEatsWeb.Telemetry,
+      # WheelieGoodEatsWeb.Telemetry,
       # Start the Ecto repository
       WheelieGoodEats.Repo,
       # Start the PubSub system
       {Phoenix.PubSub, name: WheelieGoodEats.PubSub},
       # Start Finch
-      {Finch, name: WheelieGoodEats.Finch},
+      # {Finch, name: WheelieGoodEats.Finch},
       # Start the Endpoint (http/https)
       WheelieGoodEatsWeb.Endpoint
       # Start a worker by calling: WheelieGoodEats.Worker.start_link(arg)
