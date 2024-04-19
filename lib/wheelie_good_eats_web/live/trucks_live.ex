@@ -14,7 +14,7 @@ defmodule WheelieGoodEatsWeb.TrucksLive do
   end
 
   def handle_event("query", %{"craving" => craving}, socket) do
-    if craving["food_type"] != nil do
+    if craving["food_type"] != "" do
       query_trucks = WheelieGoodEats.show_query(socket.assigns.trucks, craving["food_type"])
       reset_craving = WheelieGoodEats.new_craving()
 
