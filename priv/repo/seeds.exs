@@ -20,6 +20,7 @@ File.stream!("./assets/mobile_food_facility_permits.csv")
 |> Stream.filter(fn truck -> Enum.at(truck, 10) == "APPROVED" end)
 |> Enum.each(fn truck ->
   Repo.insert!(%WheelieGoodEats.Truck{
+    location_id: String.to_integer(Enum.at(truck, 0)),
     applicant:
       Enum.at(truck, 1)
       |> String.replace(".LLC", ", LLC")

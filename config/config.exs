@@ -1,9 +1,3 @@
-# This file is responsible for configuring your application
-# and its dependencies with the aid of the Config module.
-#
-# This configuration file is loaded before any dependency and
-# is restricted to this project.
-
 # General application configuration
 import Config
 
@@ -20,14 +14,17 @@ config :wheelie_good_eats, WheelieGoodEatsWeb.Endpoint,
   pubsub_server: WheelieGoodEats.PubSub,
   live_view: [signing_salt: "2VKZq+J4"]
 
-# Configures the mailer
-#
-# By default it uses the "Local" adapter which stores the emails
-# locally. You can see the emails in your browser, at "/dev/mailbox".
-#
-# For production it's recommended to configure a different adapter
-# at the `config/runtime.exs`.
-config :wheelie_good_eats, WheelieGoodEats.Mailer, adapter: Swoosh.Adapters.Local
+config :wheelie_good_eats, Oban,
+  repo: WheelieGoodEats.Repo,
+  plugins: [
+    {Oban.Plugins.Cron,
+     crontab: [
+       {"0 6 * * *", WheelieGoodEats.RecordWorker, queue: :cron}
+     ]}
+  ],
+  queues: [cron: 3]
+
+config :wheelie_good_eats, WheelieGoodEats.SodaApi, api_key: System.get_env("SODA_API_KEY")
 
 # Configure esbuild (the version is required)
 config :esbuild,

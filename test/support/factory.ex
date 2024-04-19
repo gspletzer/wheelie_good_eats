@@ -13,6 +13,7 @@ defmodule WheelieGoodEats.Factory do
   @spec build(:truck) :: Truck.t()
   def build(:truck) do
     %Truck{
+      location_id: Faker.random_between(1, 100),
       applicant: Faker.StarWars.planet(),
       address: Faker.Address.street_address(),
       food_items: Faker.Food.dish(),

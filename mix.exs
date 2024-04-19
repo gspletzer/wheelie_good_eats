@@ -19,7 +19,7 @@ defmodule WheelieGoodEats.MixProject do
   def application do
     [
       mod: {WheelieGoodEats.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :ecto_sql]
     ]
   end
 
@@ -32,9 +32,10 @@ defmodule WheelieGoodEats.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.7.2"},
+      {:phoenix, "~> 1.7.12"},
       {:phoenix_ecto, "~> 4.4"},
       {:ecto_sql, "~> 3.6"},
+      {:oban, "~> 2.16"},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_html, "~> 3.3"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
@@ -45,6 +46,7 @@ defmodule WheelieGoodEats.MixProject do
       {:tailwind, "~> 0.2.0", runtime: Mix.env() == :dev},
       {:swoosh, "~> 1.3"},
       {:finch, "~> 0.13"},
+      {:tesla, "~> 1.4"},
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
       {:gettext, "~> 0.20"},
@@ -52,7 +54,8 @@ defmodule WheelieGoodEats.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:faker, "~> 0.17", only: :test},
       {:mix_test_interactive, "~> 1.0", only: :dev, runtime: false},
-      {:ex_heroicons, "~> 2.0.0"}
+      {:ex_heroicons, "~> 2.0.0"},
+      {:mimic, "~> 1.0.0", only: :test}
     ]
   end
 

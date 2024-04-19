@@ -14,12 +14,10 @@ defmodule WheelieGoodEats.Application do
       WheelieGoodEats.Repo,
       # Start the PubSub system
       {Phoenix.PubSub, name: WheelieGoodEats.PubSub},
-      # Start Finch
-      # {Finch, name: WheelieGoodEats.Finch},
+      # Start instance of Oban
+      {Oban, Application.fetch_env!(:wheelie_good_eats, Oban)},
       # Start the Endpoint (http/https)
       WheelieGoodEatsWeb.Endpoint
-      # Start a worker by calling: WheelieGoodEats.Worker.start_link(arg)
-      # {WheelieGoodEats.Worker, arg}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

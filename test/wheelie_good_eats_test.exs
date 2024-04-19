@@ -8,9 +8,9 @@ defmodule WheelieGoodEatsTest do
   setup do
     :ok = Ecto.Adapters.SQL.Sandbox.checkout(WheelieGoodEats.Repo)
 
-    insert!(:truck)
-    insert!(:truck)
-    insert!(:truck, food_items: "tacos")
+    insert!(:truck, location_id: 1)
+    insert!(:truck, location_id: 2)
+    insert!(:truck, location_id: 3, food_items: "tacos")
 
     :ok
   end

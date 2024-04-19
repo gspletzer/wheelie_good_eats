@@ -5,9 +5,9 @@ defmodule WheelieGoodEatsWeb.TrucksLiveTest do
   alias WheelieGoodEats.Factory
 
   setup do
-    truck_one = Factory.insert!(:truck)
-    truck_two = Factory.insert!(:truck)
-    truck_three = Factory.insert!(:truck, food_items: "tacos")
+    truck_one = Factory.insert!(:truck, location_id: 1)
+    truck_two = Factory.insert!(:truck, location_id: 2)
+    truck_three = Factory.insert!(:truck, location_id: 3, food_items: "tacos")
 
     [truck_one: truck_one, truck_two: truck_two, truck_three: truck_three]
   end
