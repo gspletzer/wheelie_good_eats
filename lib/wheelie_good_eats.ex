@@ -3,6 +3,8 @@ defmodule WheelieGoodEats do
   Top-level API for the Wheelie Good Eats application.
   """
   alias WheelieGoodEats.Craving
+  alias WheelieGoodEats.Record
+  alias WheelieGoodEats.SodaApi
   alias WheelieGoodEats.Truck
 
   @type craving :: Craving.changeset()
@@ -37,8 +39,25 @@ defmodule WheelieGoodEats do
   Selects a random food truck for the client from the list of approved
   trucks already mounted on socket.
   """
-  @spec show_random(List.t()) :: Truck.t()
+  @spec show_random([Truck.t()]) :: Truck.t()
   def show_random(trucks) do
     Enum.random(trucks)
+  end
+
+  @doc """
+  Updates the trucks table to ensure database is consistent with current list
+  of approved trucks from SF gov.
+
+  This is primarily used by the daily cron job to update trucks, but can be
+  launched ad-hoc.
+  """
+  @spec update_approved_trucks() :: :ok | :error
+  def update_approved_trucks() do
+    recorded_ids = Truck.fetch_current_ids()
+    approved_trucks = SodaApi.fetch_approved_trucks()
+
+    Record.record_approved_trucks(recorded_ids, approved_trucks)
+
+    Record.remove_invalid_trucks(recorded_ids, approved_trucks)
   end
 end
